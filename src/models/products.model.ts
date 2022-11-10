@@ -1,5 +1,4 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
-
 import { IProductsID, IProducts } from '../interfaces';
 import mysql from './db/connection';
 
