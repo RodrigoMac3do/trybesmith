@@ -3,8 +3,8 @@ import { OrdersController } from '../controllers/index';
 
 const router = Router();
 
-const ordersController = new OrdersController();
+const controller = new OrdersController();
 
-router.get('/', ordersController.getAll.bind(ordersController));
+router.get('/', controller.getAll.bind(controller));
 
 export default router;
