@@ -1,6 +1,6 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import { IProductsID, IProducts } from '../interfaces';
-import mysql from './db/connection';
+import mysql from './connection';
 
 export default class ProductsModel {
   private connection = mysql;

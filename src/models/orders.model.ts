@@ -1,6 +1,6 @@
 import { RowDataPacket } from 'mysql2/promise';
 import { IOrders } from '../interfaces';
-import mysql from './db/connection';
+import mysql from './connection';
 
 export default class OrdersModel {
   private connection = mysql;

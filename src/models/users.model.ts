@@ -1,7 +1,7 @@
 import { ResultSetHeader } from 'mysql2/promise';
 
 import { IUsers, IUsersID } from '../interfaces';
-import mysql from './db/connection';
+import mysql from './connection';
 
 export default class UsersModel {
   private connection = mysql;

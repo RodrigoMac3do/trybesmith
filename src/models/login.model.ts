@@ -1,6 +1,6 @@
 import { RowDataPacket } from 'mysql2/promise';
 import { ILogin } from '../interfaces';
-import mysql from './db/connection';
+import mysql from './connection';
 
 export default class LoginModel {
   private connection = mysql;
