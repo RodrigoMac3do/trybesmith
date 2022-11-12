@@ -1,7 +1,12 @@
 import express from 'express';
 import 'express-async-errors';
-import { productsRoute, usersRoute, ordersRoute, loginRoute } from './routes/index';
-import httpErrorMiddleware from './middlewares/http.error.middleware';
+import {
+  productsRoute,
+  usersRoute,
+  ordersRoute,
+  loginRoute,
+} from './routes/index';
+import { httpErrorMiddleware } from './middlewares';
 
 const app = express();
 
