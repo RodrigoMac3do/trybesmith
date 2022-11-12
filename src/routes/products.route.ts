@@ -3,10 +3,10 @@ import { ProductsController } from '../controllers/index';
 
 const router = Router();
 
-const productsController = new ProductsController();
+const controller = new ProductsController();
 
-router.get('/', productsController.getAll.bind(productsController));
+router.get('/', controller.getAll.bind(controller));
 
-router.post('/', productsController.create.bind(productsController));
+router.post('/', controller.create.bind(controller));
 
 export default router;
