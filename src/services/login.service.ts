@@ -1,11 +1,12 @@
-// import jsonwebtoken from 'jsonwebtoken';
 import { ILogin } from '../interfaces';
 import { LoginModel } from '../models';
 import HttpException from '../utils/http.exception';
-import createToken from '../utils/jwt.util';
+import CreateToken from '../utils/jwt.util';
 
 export default class LoginService {
   public model = new LoginModel();
+
+  public token = new CreateToken();
 
   public async verify(body: ILogin): Promise<string> {
     const data = await this.model.verify(body);
@@ -14,6 +15,6 @@ export default class LoginService {
       throw new HttpException(401, 'Username or password invalid');
     }
 
-    return createToken(data[0]);
+    return this.token.createToken(data[0]);
   }
 }
