@@ -7,7 +7,7 @@ import createToken from '../utils/jwt.util';
 export default class LoginService {
   public model = new LoginModel();
 
-  public async verify(body: ILogin) {
+  public async verify(body: ILogin): Promise<string> {
     const data = await this.model.verify(body);
 
     if (data.length === 0) {
