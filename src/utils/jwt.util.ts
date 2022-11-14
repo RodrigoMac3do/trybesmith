@@ -3,15 +3,17 @@ import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
-const createToken = (data: object) => {
-  const payload = { data };
+export default class CreateToken {
+  public jwt = jwt;
 
-  const token = jwt.sign(payload, process.env.JWT_SECRET as string, {
-    expiresIn: '8h',
-    algorithm: 'HS256',
-  });
+  public createToken(data: object): string {
+    const payload = { data };
 
-  return token;
-};
+    const token = this.jwt.sign(payload, process.env.JWT_SECRET as string, {
+      expiresIn: '8h',
+      algorithm: 'HS256',
+    });
 
-export default createToken;
+    return token;
+  }
+}
