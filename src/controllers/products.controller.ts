@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import { ProductsService } from '../services';
+import { productSchema } from '../services/validations/schema';
+import validateSchema from '../services/validations/validationSchema';
 
 export default class ProductsController {
   public productsService = new ProductsService();
@@ -11,9 +13,12 @@ export default class ProductsController {
   }
 
   async create(req: Request, res: Response) {
-    const products = req.body;
-    const productsCreated = await this.productsService.create(products);
-    
+    const { body } = req;
+
+    await validateSchema(productSchema, body);
+
+    const productsCreated = await this.productsService.create(body);
+
     res.status(201).json(productsCreated);
   }
 }
