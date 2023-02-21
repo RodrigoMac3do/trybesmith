@@ -1,6 +1,6 @@
-import productsRoute from './products.route';
-import usersRoute from './users.route';
-import ordersRoute from './orders.route';
-import loginRoute from './login.route';
+import products from './products.route';
+import users from './users.route';
+import orders from './orders.route';
+import login from './login.route';
 
-export { productsRoute, usersRoute, ordersRoute, loginRoute };
+export default { products, users, orders, login };
