@@ -1,5 +1,4 @@
 import { ResultSetHeader } from 'mysql2/promise';
-
 import { IUsers, IUsersID } from '../interfaces';
 import mysql from './connection';
 
