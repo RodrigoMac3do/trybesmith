@@ -1,18 +1,25 @@
-import { Request, Response } from 'express';
+import { RequestHandler } from 'express';
 import { UsersService } from '../services';
-import { userSchema } from '../services/validations/schema';
-import validateSchema from '../services/validations/validationSchema';
+import { userSchema } from '../services/validations/Schema';
+import ValidateSchema from '../services/validations/ValidationSchema';
 
 export default class UsersController {
-  public usersService = new UsersService();
+  private service: UsersService;
 
-  async create(req: Request, res: Response) {
+  private validateSchema: ValidateSchema;
+
+  constructor() {
+    this.service = new UsersService();
+    this.validateSchema = new ValidateSchema();
+  }
+
+  create: RequestHandler = async (req, res) => {
     const { body } = req;
 
-    await validateSchema(userSchema, body);
+    await this.validateSchema.validate(userSchema, body);
 
-    const token = await this.usersService.create(body);
+    const token = await this.service.create(body);
 
     res.status(201).json({ token });
-  }
+  };
 }
