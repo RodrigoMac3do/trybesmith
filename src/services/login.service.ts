@@ -1,20 +1,27 @@
 import { ILogin } from '../interfaces';
 import { LoginModel } from '../models';
-import HttpException from '../utils/http.exception';
-import CreateToken from '../utils/jwt.util';
+import HttpException from '../utils/HttpException';
+import Jwt from '../utils/jwt.util';
 
 export default class LoginService {
-  public model = new LoginModel();
+  public model: LoginModel;
 
-  public token = new CreateToken();
+  private jwt: Jwt;
 
-  public async verify(body: ILogin): Promise<string> {
-    const data = await this.model.verify(body);
+  constructor() {
+    this.model = new LoginModel();
+    this.jwt = new Jwt();
+  }
 
-    if (data.length === 0) {
+  public async signIn(body: ILogin): Promise<string> {
+    const user = await this.model.signIn(body);
+
+    if (!user) {
       throw new HttpException(401, 'Username or password invalid');
     }
 
-    return this.token.createToken(data[0]);
+    const { password, ...userWithoutPassword } = user;
+
+    return this.jwt.createToken({ userWithoutPassword });
   }
 }
