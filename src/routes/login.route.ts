@@ -5,6 +5,6 @@ const router = Router();
 
 const controller = new LoginController();
 
-router.post('/', controller.verify.bind(controller));
+router.post('/', controller.signIn.bind(controller));
 
 export default router;
