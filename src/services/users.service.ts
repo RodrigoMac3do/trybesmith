@@ -1,15 +1,22 @@
 import { IUsers } from '../interfaces';
 import { UsersModel } from '../models';
-import CreateToken from '../utils/jwt.util';
+import Jwt from '../utils/jwt.util';
 
 export default class UsersService {
-  public users = new UsersModel();
+  private model: UsersModel;
 
-  public token = new CreateToken();
+  private jwt: Jwt;
+
+  constructor() {
+    this.model = new UsersModel();
+    this.jwt = new Jwt();
+  }
 
   public async create(users: IUsers): Promise<string> {
-    const user = await this.users.create(users);
+    const user = await this.model.create(users);
 
-    return this.token.createToken(user);
+    const { password, ...userWithoutPassword } = user;
+
+    return this.jwt.createToken(userWithoutPassword);
   }
 }
