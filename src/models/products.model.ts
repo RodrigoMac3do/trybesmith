@@ -5,7 +5,7 @@ import mysql from './connection';
 export default class ProductsModel {
   private connection = mysql;
 
-  public async getAll(): Promise<IProductsID[]> {
+  public async findAll(): Promise<IProductsID[]> {
     const query = 'SELECT * FROM Trybesmith.Products';
 
     const [rows] = await this.connection.execute<
@@ -15,8 +15,8 @@ export default class ProductsModel {
     return rows;
   }
 
-  public async create(products: IProducts): Promise<IProductsID> {
-    const { name, amount } = products;
+  public async create(product: IProducts): Promise<IProductsID> {
+    const { name, amount } = product;
 
     const query = `
     INSERT INTO Trybesmith.Products 
@@ -29,6 +29,6 @@ export default class ProductsModel {
       [name, amount],
     );
 
-    return { id: insertId, ...products };
+    return { id: insertId, ...product };
   }
 }
