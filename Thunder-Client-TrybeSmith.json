@@ -1,0 +1,118 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "TrybeSmith",
+    "dateExported": "2023-02-22T03:38:38.963Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f97d45ca-91b8-47a4-8174-783fa5826d44",
+            "colId": "46f736a5-a582-44bc-a52d-1bada6e46417",
+            "containerId": "",
+            "name": "Criação de novo usuário",
+            "url": "http://localhost:3000/users",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2022-11-07T23:01:12.340Z",
+            "modified": "2023-02-22T00:05:06.732Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{ \n  \"username\": \"Rodrigo Macedo\",\n  \"classe\": \"swordsman\",\n  \"level\": 10,\n  \"password\": \"batatinha123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "94a6059c-e44b-45a4-8f8d-d631afccf823",
+            "colId": "46f736a5-a582-44bc-a52d-1bada6e46417",
+            "containerId": "",
+            "name": "Faz login na aplicação",
+            "url": "http://localhost:3000/login",
+            "method": "POST",
+            "sortNum": 7500,
+            "created": "2022-11-10T20:12:38.981Z",
+            "modified": "2023-02-22T00:05:10.987Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "  {\n    \"username\": \"reigal\",\n    \"password\": \"1dragaonoceu\"\n  }",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0cd72b4f-3271-4479-b6c7-49bda7e7e878",
+            "colId": "46f736a5-a582-44bc-a52d-1bada6e46417",
+            "containerId": "",
+            "name": "Cria um novo produto",
+            "url": "http://localhost:3000/products",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2022-11-07T20:19:36.917Z",
+            "modified": "2023-02-22T00:16:21.287Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "  {\n    \"name\": \"Espada longa\",\n    \"amount\": \"30 peças de ouro\"\n  }",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "01e72477-21e6-4beb-b9e7-1fbde201ed55",
+            "colId": "46f736a5-a582-44bc-a52d-1bada6e46417",
+            "containerId": "",
+            "name": "Faz listagem de todos os produtos",
+            "url": "http://localhost:3000/products",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2022-11-07T22:47:18.480Z",
+            "modified": "2022-11-07T22:47:34.934Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a9d44637-e8a2-4f55-873a-2259c692efb3",
+            "colId": "46f736a5-a582-44bc-a52d-1bada6e46417",
+            "containerId": "",
+            "name": "Criação de um novo pedido",
+            "url": "http://localhost:3000/orders",
+            "method": "POST",
+            "sortNum": 25000,
+            "created": "2023-02-22T00:37:04.303Z",
+            "modified": "2023-02-22T03:38:29.951Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJyZWlnYWwiLCJjbGFzc2UiOiJHdWVycmVpcm8iLCJsZXZlbCI6MTAsImlhdCI6MTY3NzAzMjQzMSwiZXhwIjoxNjc3MDYxMjMxfQ.BpGX_jgp4XbBhfI0rYFm_vlG-1mPP3j60QdoMfo-qRc"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"productsIds\": [1]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5ba14385-8788-4491-a334-a91375f0518a",
+            "colId": "46f736a5-a582-44bc-a52d-1bada6e46417",
+            "containerId": "",
+            "name": "Faz listagem de todos os pedidos",
+            "url": "http://localhost:3000/orders",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2022-11-10T13:52:27.597Z",
+            "modified": "2022-11-10T13:52:45.532Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
