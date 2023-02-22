@@ -1,11 +1,11 @@
 import { RowDataPacket } from 'mysql2/promise';
-import { ILogin } from '../interfaces';
+import { ILogin, IToken } from '../interfaces';
 import mysql from './connection';
 
 export default class LoginModel {
   private connection = mysql;
 
-  public async signIn(body: ILogin): Promise<ILogin> {
+  public signIn = async (body: ILogin): Promise<ILogin> => {
     const { username, password } = body;
 
     const query = `
@@ -25,5 +25,28 @@ export default class LoginModel {
     );
 
     return row;
-  }
+  };
+
+  public validate = async (payload: IToken): Promise<IToken | undefined> => {
+    const { id, username, classe, level } = payload;
+
+    const query = `
+    SELECT
+      *
+    FROM
+      Trybesmith.Users
+    WHERE
+      id = ?
+      AND username = ?
+      AND classe = ?
+      AND level = ?
+    `;
+
+    const [[row]] = await this.connection.execute<IToken[] & RowDataPacket[]>(
+      query,
+      [id, username, classe, level],
+    );
+
+    return row;
+  };
 }
