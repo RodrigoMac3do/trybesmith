@@ -20,10 +20,10 @@ export default class OrdersService {
   public create = async (userId: number, body: IOrders): Promise<IOrders> => {
     const { productsIds } = body;
 
-    const newOrder = await this.model.create(userId);
+    const insertId = await this.model.create(userId);
 
     await Promise.all(
-      productsIds.map((id) => this.modelProducts.update(newOrder, id)),
+      productsIds.map((id) => this.modelProducts.update(insertId, id)),
     );
 
     return { userId, productsIds };
