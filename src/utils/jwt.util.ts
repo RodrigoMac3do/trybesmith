@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import { IToken } from '../interfaces';
 import HttpException from './HttpException';
 
 dotenv.config();
@@ -16,19 +17,13 @@ export default class Jwt {
     return token;
   };
 
-  public verifyToken = (token: string): jwt.JwtPayload | string => {
+  public verifyToken = (token: string): IToken => {
     try {
       const payload = jwt.verify(token, process.env.JWT_SECRET as string);
 
-      return payload;
+      return payload as IToken;
     } catch (error) {
       throw new HttpException(401, 'Invalid token');
     }
-  };
-
-  public decoderToken = (token: string): jwt.JwtPayload => {
-    const payload = jwt.decode(token);
-
-    return payload as object;
   };
 }
