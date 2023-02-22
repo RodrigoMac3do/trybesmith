@@ -32,13 +32,11 @@ export default class OrdersController {
       throw new HttpException(401, 'Token not found');
     }
 
-    this.jwt.verifyToken(authorization);
-
-    const { id } = this.jwt.decoderToken(authorization);
+    const payload = this.jwt.verifyToken(authorization);
 
     await this.validateSchema.validate(ordersSchema, body);
 
-    const order = await this.service.create(id, body);
+    const order = await this.service.create(payload, body);
 
     res.status(201).json(order);
   };
