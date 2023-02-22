@@ -5,7 +5,7 @@ import mysql from './connection';
 export default class LoginModel {
   private connection = mysql;
 
-  public async verify(body: ILogin): Promise<ILogin[]> {
+  public async signIn(body: ILogin): Promise<ILogin> {
     const { username, password } = body;
 
     const query = `
@@ -19,7 +19,7 @@ export default class LoginModel {
       password = ?
     `;
 
-    const [row] = await this.connection.execute<ILogin[] & RowDataPacket[]>(
+    const [[row]] = await this.connection.execute<ILogin[] & RowDataPacket[]>(
       query,
       [username, password],
     );
