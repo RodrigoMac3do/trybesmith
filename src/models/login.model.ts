@@ -10,7 +10,7 @@ export default class LoginModel {
 
     const query = `
     SELECT  
-      username, password
+      *
     FROM
       Trybesmith.Users
     WHERE 
