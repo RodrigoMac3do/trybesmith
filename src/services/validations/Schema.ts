@@ -17,4 +17,10 @@ const userSchema: Joi.Schema = Joi.object({
   password: Joi.string().min(8).required(),
 });
 
-export { loginSchema, productSchema, userSchema };
+const ordersSchema: Joi.Schema = Joi.object({
+  productsIds: Joi.array().items(Joi.number().required()).required().messages({
+    'array.includesRequiredUnknowns': '"productsIds" must include only numbers',
+  }),
+});
+
+export { loginSchema, productSchema, userSchema, ordersSchema };
