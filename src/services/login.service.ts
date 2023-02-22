@@ -22,6 +22,6 @@ export default class LoginService {
 
     const { password, ...userWithoutPassword } = user;
 
-    return this.jwt.createToken({ userWithoutPassword });
+    return this.jwt.createToken(userWithoutPassword);
   }
 }
