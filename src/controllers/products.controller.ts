@@ -1,24 +1,31 @@
-import { Request, Response } from 'express';
+import { RequestHandler } from 'express';
 import { ProductsService } from '../services';
-import { productSchema } from '../services/validations/schema';
-import validateSchema from '../services/validations/validationSchema';
+import { productSchema } from '../services/validations/Schema';
+import ValidateSchema from '../services/validations/ValidationSchema';
 
 export default class ProductsController {
-  public productsService = new ProductsService();
+  private service: ProductsService;
 
-  async getAll(_req: Request, res: Response) {
-    const products = await this.productsService.getAll();
+  private validateSchema: ValidateSchema;
+
+  constructor() {
+    this.service = new ProductsService();
+    this.validateSchema = new ValidateSchema();
+  }
+
+  public findAll: RequestHandler = async (_req, res) => {
+    const products = await this.service.findAll();
 
     res.status(200).json(products);
-  }
+  };
 
-  async create(req: Request, res: Response) {
+  public create: RequestHandler = async (req, res) => {
     const { body } = req;
 
-    await validateSchema(productSchema, body);
+    await this.validateSchema.validate(productSchema, body);
 
-    const productsCreated = await this.productsService.create(body);
+    const product = await this.service.create(body);
 
-    res.status(201).json(productsCreated);
-  }
+    res.status(201).json(product);
+  };
 }
