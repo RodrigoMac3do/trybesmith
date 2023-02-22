@@ -2,17 +2,21 @@ import { IProductsID, IProducts } from '../interfaces';
 import { ProductsModel } from '../models';
 
 export default class ProductsService {
-  public products = new ProductsModel();
+  private model: ProductsModel;
 
-  public async getAll(): Promise<IProductsID[]> {
-    const products = await this.products.getAll();
-    
+  constructor() {
+    this.model = new ProductsModel();
+  }
+
+  public async findAll(): Promise<IProductsID[]> {
+    const products = await this.model.findAll();
+
     return products;
   }
 
-  public async create(products: IProducts): Promise<IProductsID> {
-    const product = await this.products.create(products);
+  public async create(product: IProducts): Promise<IProductsID> {
+    const newProduct = await this.model.create(product);
 
-    return product;
+    return newProduct;
   }
 }
