@@ -1,8 +1,8 @@
-export interface IOrdersID {
-  id: number;
+export interface IOrders {
+  productsIds: number[];
+  userId?: number;
 }
 
-export interface IOrders extends IOrdersID {
-  userId: number;
-  productsId: number[];
+export interface IOrdersID extends IOrders {
+  id: number;
 }
